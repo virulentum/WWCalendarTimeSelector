@@ -18,7 +18,19 @@ public class LocaleConfig: NSObject {
 
   internal static var locale: Locale = Locale.autoupdatingCurrent
 
-  static func recreateLocale(with identifier: LocaleConfigIdentifier) {
+  public static func recreateLocale(with identifier: LocaleConfigIdentifier) {
     locale = Locale(identifier: identifier.rawValue)
+  }
+
+  public static func trySetupLanguageAuthomatically() {
+    guard let currentLanguage = (UserDefaults.standard.array(forKey: "AppleLanguages") as? [String])?.first else {
+      return
+    }
+    switch true {
+    case currentLanguage.hasPrefix(LocaleConfigIdentifier.uk.rawValue): recreateLocale(with: .uk)
+    case currentLanguage.hasPrefix(LocaleConfigIdentifier.ru.rawValue): recreateLocale(with: .ru)
+    case currentLanguage.hasPrefix(LocaleConfigIdentifier.en.rawValue): recreateLocale(with: .en)
+    default: break
+    }
   }
 }

@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selector = UIStoryboard(name: "WWCalendarTimeSelector", bundle: nil).instantiateInitialViewController() as! WWCalendarTimeSelector
-      LocaleConfig.recreateLocale(with: .ru)
+        LocaleConfig.trySetupLanguageAuthomatically()
         selector.delegate = self
         selector.optionCurrentDate = singleDate
         selector.optionCurrentDates = Set(multipleDates)
