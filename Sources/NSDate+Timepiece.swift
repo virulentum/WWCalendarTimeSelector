@@ -203,7 +203,7 @@ extension Date {
     
     func stringFromFormat(_ format: String) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale.autoupdatingCurrent
+        formatter.locale = LocaleConfig.locale
         formatter.calendar = Calendar.autoupdatingCurrent
         formatter.dateFormat = format
         return formatter.string(from: self)

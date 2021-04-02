@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selector = UIStoryboard(name: "WWCalendarTimeSelector", bundle: nil).instantiateInitialViewController() as! WWCalendarTimeSelector
+      LocaleConfig.recreateLocale(with: .ru)
         selector.delegate = self
         selector.optionCurrentDate = singleDate
         selector.optionCurrentDates = Set(multipleDates)
@@ -133,14 +134,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, date: Date) {
         print("Selected \n\(date)\n---")
         singleDate = date
-        dateLabel.text = date.stringFromFormat("d' 'MMMM' 'yyyy', 'h':'mma")
+        dateLabel.text = date.stringFromFormat("d' 'LLLL' 'yyyy', 'h':'mma")
     }
     
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, dates: [Date]) {
         print("Selected Multiple Dates \n\(dates)\n---")
         if let date = dates.first {
             singleDate = date
-            dateLabel.text = date.stringFromFormat("d' 'MMMM' 'yyyy', 'h':'mma")
+            dateLabel.text = date.stringFromFormat("d' 'LLLL' 'yyyy', 'h':'mma")
         }
         else {
             dateLabel.text = "No Date Selected"
