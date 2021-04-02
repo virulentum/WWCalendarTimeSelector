@@ -43,6 +43,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         selector.optionCurrentDates = Set(multipleDates)
         selector.optionCurrentDateRange.setStartDate(multipleDates.first ?? singleDate)
         selector.optionCurrentDateRange.setEndDate(multipleDates.last ?? singleDate)
+        let startDate = multipleDates.first ?? singleDate
+        selector.optionRangeOfEnabledDates.setStartDate(startDate)
+        selector.optionRangeOfEnabledDates.setEndDate(startDate.endOfMonth)
         
         switch (indexPath as NSIndexPath).row {
             
